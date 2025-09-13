@@ -1,0 +1,5 @@
+[
+  { "id": "i1", "name": "S&P 500 Index Fund", "type": "mutual_fund", "currentValue": 12450 },
+  { "id": "i2", "name": "Tech Growth ETF", "type": "mutual_fund", "currentValue": 8200 },
+  { "id": "i3", "name": "Govt Bond 2030", "type": "bond", "currentValue": 4200 }
+]
