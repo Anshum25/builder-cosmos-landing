@@ -5,17 +5,20 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Loader2, Send } from "lucide-react";
+import { Loader2, Send, Lock, Unlock } from "lucide-react";
+import type { ChatResponse } from "@shared/api";
 
 export default function Chat() {
   const { messages, send, sending } = useChat();
   const [text, setText] = useState("");
+  const [last, setLast] = useState<ChatResponse | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const onSend = async () => {
     if (!text.trim()) return;
-    await send(text.trim());
+    const resp = await send(text.trim());
     setText("");
+    if (resp) setLast(resp);
     containerRef.current?.scrollTo({ top: 999999, behavior: "smooth" });
   };
 
@@ -23,8 +26,8 @@ export default function Chat() {
     <main className="min-h-[calc(100vh-56px)] bg-gradient-to-br from-indigo-50 via-white to-fuchsia-50">
       <section className="container py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-2">
-            <Card className="h-[70vh] flex flex-col">
+          <div className="lg:col-span-2 space-y-4">
+            <Card className="h-[60vh] flex flex-col">
               <CardHeader>
                 <CardTitle>Chat with your finances</CardTitle>
               </CardHeader>
@@ -62,6 +65,30 @@ export default function Chat() {
                 )}
               </CardContent>
             </Card>
+
+            {last && (
+              <div className="space-y-3">
+                {last.insights?.map((ins) => (
+                  <motion.div key={ins.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
+                    <Card>
+                      <CardHeader className="flex flex-row items-center justify-between">
+                        <CardTitle className="text-base">{ins.title}</CardTitle>
+                        <div className="flex gap-1">
+                          {ins.usedCategories.map((c) => (
+                            <Badge key={c} className="flex items-center gap-1">
+                              <Unlock className="h-3 w-3" /> {c}
+                            </Badge>
+                          ))}
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-sm text-muted-foreground">{ins.description}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="lg:col-span-1">
             <Card>
