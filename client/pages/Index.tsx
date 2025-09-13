@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 import { Lock, Unlock, ArrowRight, Wallet, TrendingDown, ShieldCheck, FileText } from "lucide-react";
-import { PieChart, Pie, Cell, ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip as RTooltip } from "recharts";
+import ExpensePie from "@/components/charts/ExpensePie";
+import SavingsLine from "@/components/charts/SavingsLine";
 import { breakdownTopExpenses, forecastSeries, simulateDebt } from "@/lib/finance";
 
 export default function Index() {
