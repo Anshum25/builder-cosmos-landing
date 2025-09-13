@@ -67,6 +67,34 @@ function Header() {
   );
 }
 
+function MobileNav() {
+  const loc = useLocation();
+  const [open, setOpen] = (React as any).useState(false);
+  return (
+    <div className="md:hidden">
+      <button aria-label="Open menu" className="p-2" onClick={() => setOpen(true)}>
+        <span className="i">☰</span>
+      </button>
+      {open && (
+        <div className="fixed inset-0 z-50 bg-black/40" onClick={() => setOpen(false)} aria-hidden />
+      )}
+      {open && (
+        <div className="fixed right-0 top-0 z-50 h-full w-64 bg-background border-l shadow-xl p-4">
+          <button className="mb-4" onClick={() => setOpen(false)} aria-label="Close menu">✕</button>
+          <nav className="flex flex-col">
+            <Link to="/" className="px-3 py-2" onClick={() => setOpen(false)} aria-current={loc.pathname === "/"}>
+              Dashboard
+            </Link>
+            <Link to="/chat" className="px-3 py-2" onClick={() => setOpen(false)} aria-current={loc.pathname === "/chat"}>
+              Chat
+            </Link>
+          </nav>
+        </div>
+      )}
+    </div>
+  );
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
