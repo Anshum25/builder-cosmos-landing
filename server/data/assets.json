@@ -1,0 +1,6 @@
+[
+  { "id": "a1", "name": "Checking Account", "type": "bank", "value": 5200.25 },
+  { "id": "a2", "name": "Savings Account", "type": "bank", "value": 15650.5 },
+  { "id": "a3", "name": "Cash on Hand", "type": "cash", "value": 420 },
+  { "id": "a4", "name": "Condo (Market Value)", "type": "property", "value": 220000 }
+]
