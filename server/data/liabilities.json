@@ -1,0 +1,5 @@
+[
+  { "id": "l1", "name": "Mortgage", "balance": 165000, "interestRate": 0.038 },
+  { "id": "l2", "name": "Auto Loan", "balance": 8200, "interestRate": 0.065 },
+  { "id": "l3", "name": "Credit Card", "balance": 2300, "interestRate": 0.219 }
+]
