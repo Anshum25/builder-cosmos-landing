@@ -103,6 +103,15 @@ export default function Chat() {
                     <Loader2 className="h-4 w-4 animate-spin" /> Thinking...
                   </div>
                 )}
+                {last?.usedCategories && last.usedCategories.length > 0 && (
+                  <div className="flex flex-wrap gap-1 text-xs mt-1">
+                    {last.usedCategories.map((c) => (
+                      <Badge key={c} variant="secondary" className="flex items-center gap-1">
+                        <Unlock className="h-3 w-3" /> {c}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
                 {last?.missingPermissions && last.missingPermissions.length > 0 && (
                   <div className="mt-2 text-sm">
                     <div className="mb-2">I need access to {last.missingPermissions.join(", ")} to answer that.</div>
