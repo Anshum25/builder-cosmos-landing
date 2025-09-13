@@ -334,5 +334,13 @@
     "category": "Dining",
     "description": "Dining expense",
     "type": "expense"
+  },
+  {
+    "id": "rtx_1757741731170",
+    "date": "2025-09-13",
+    "amount": 141.58,
+    "category": "Bonus",
+    "description": "Bonus income",
+    "type": "income"
   }
 ]

@@ -176,14 +176,7 @@ export default function Index() {
                 </CardHeader>
                 <CardContent className="h-64">
                   {tx.length ? (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={series}>
-                        <XAxis dataKey="label" hide={false} />
-                        <YAxis hide={false} />
-                        <RTooltip />
-                        <Line type="monotone" dataKey="savings" stroke="#6366F1" strokeWidth={2} dot={false} />
-                      </LineChart>
-                    </ResponsiveContainer>
+                    <SavingsLine data={series} id="forecast-chart" />
                   ) : (
                     <p className="text-sm text-muted-foreground">Enable Transactions to see forecast.</p>
                   )}
