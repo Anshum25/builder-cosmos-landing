@@ -1,25 +1,170 @@
 [
-  {"id":"t1","date":"2025-06-02","amount":3500,"category":"Salary","description":"Monthly salary","type":"income"},
-  {"id":"t2","date":"2025-06-03","amount":-1200,"category":"Rent","description":"June rent","type":"expense"},
-  {"id":"t3","date":"2025-06-05","amount":-220,"category":"Groceries","description":"Weekly groceries","type":"expense"},
-  {"id":"t4","date":"2025-06-11","amount":-90,"category":"Utilities","description":"Electricity bill","type":"expense"},
-  {"id":"t5","date":"2025-06-15","amount":-150,"category":"Dining","description":"Dinner out","type":"expense"},
-
-  {"id":"t6","date":"2025-05-02","amount":3500,"category":"Salary","description":"Monthly salary","type":"income"},
-  {"id":"t7","date":"2025-05-04","amount":-1180,"category":"Rent","description":"May rent","type":"expense"},
-  {"id":"t8","date":"2025-05-07","amount":-210,"category":"Groceries","description":"Weekly groceries","type":"expense"},
-  {"id":"t9","date":"2025-05-12","amount":-85,"category":"Utilities","description":"Water bill","type":"expense"},
-  {"id":"t10","date":"2025-05-18","amount":-120,"category":"Dining","description":"Lunch","type":"expense"},
-
-  {"id":"t11","date":"2025-04-02","amount":3500,"category":"Salary","description":"Monthly salary","type":"income"},
-  {"id":"t12","date":"2025-04-04","amount":-1180,"category":"Rent","description":"April rent","type":"expense"},
-  {"id":"t13","date":"2025-04-07","amount":-180,"category":"Groceries","description":"Weekly groceries","type":"expense"},
-  {"id":"t14","date":"2025-04-16","amount":-70,"category":"Utilities","description":"Gas bill","type":"expense"},
-  {"id":"t15","date":"2025-04-20","amount":-95,"category":"Dining","description":"Cafe","type":"expense"},
-
-  {"id":"t16","date":"2025-03-02","amount":3500,"category":"Salary","description":"Monthly salary","type":"income"},
-  {"id":"t17","date":"2025-03-04","amount":-1180,"category":"Rent","description":"March rent","type":"expense"},
-  {"id":"t18","date":"2025-03-08","amount":-175,"category":"Groceries","description":"Weekly groceries","type":"expense"},
-  {"id":"t19","date":"2025-03-17","amount":-60,"category":"Utilities","description":"Internet","type":"expense"},
-  {"id":"t20","date":"2025-03-21","amount":-110,"category":"Dining","description":"Dinner","type":"expense"}
+  {
+    "id": "t1",
+    "date": "2025-06-02",
+    "amount": 3500,
+    "category": "Salary",
+    "description": "Monthly salary",
+    "type": "income"
+  },
+  {
+    "id": "t2",
+    "date": "2025-06-03",
+    "amount": -1200,
+    "category": "Rent",
+    "description": "June rent",
+    "type": "expense"
+  },
+  {
+    "id": "t3",
+    "date": "2025-06-05",
+    "amount": -220,
+    "category": "Groceries",
+    "description": "Weekly groceries",
+    "type": "expense"
+  },
+  {
+    "id": "t4",
+    "date": "2025-06-11",
+    "amount": -90,
+    "category": "Utilities",
+    "description": "Electricity bill",
+    "type": "expense"
+  },
+  {
+    "id": "t5",
+    "date": "2025-06-15",
+    "amount": -150,
+    "category": "Dining",
+    "description": "Dinner out",
+    "type": "expense"
+  },
+  {
+    "id": "t6",
+    "date": "2025-05-02",
+    "amount": 3500,
+    "category": "Salary",
+    "description": "Monthly salary",
+    "type": "income"
+  },
+  {
+    "id": "t7",
+    "date": "2025-05-04",
+    "amount": -1180,
+    "category": "Rent",
+    "description": "May rent",
+    "type": "expense"
+  },
+  {
+    "id": "t8",
+    "date": "2025-05-07",
+    "amount": -210,
+    "category": "Groceries",
+    "description": "Weekly groceries",
+    "type": "expense"
+  },
+  {
+    "id": "t9",
+    "date": "2025-05-12",
+    "amount": -85,
+    "category": "Utilities",
+    "description": "Water bill",
+    "type": "expense"
+  },
+  {
+    "id": "t10",
+    "date": "2025-05-18",
+    "amount": -120,
+    "category": "Dining",
+    "description": "Lunch",
+    "type": "expense"
+  },
+  {
+    "id": "t11",
+    "date": "2025-04-02",
+    "amount": 3500,
+    "category": "Salary",
+    "description": "Monthly salary",
+    "type": "income"
+  },
+  {
+    "id": "t12",
+    "date": "2025-04-04",
+    "amount": -1180,
+    "category": "Rent",
+    "description": "April rent",
+    "type": "expense"
+  },
+  {
+    "id": "t13",
+    "date": "2025-04-07",
+    "amount": -180,
+    "category": "Groceries",
+    "description": "Weekly groceries",
+    "type": "expense"
+  },
+  {
+    "id": "t14",
+    "date": "2025-04-16",
+    "amount": -70,
+    "category": "Utilities",
+    "description": "Gas bill",
+    "type": "expense"
+  },
+  {
+    "id": "t15",
+    "date": "2025-04-20",
+    "amount": -95,
+    "category": "Dining",
+    "description": "Cafe",
+    "type": "expense"
+  },
+  {
+    "id": "t16",
+    "date": "2025-03-02",
+    "amount": 3500,
+    "category": "Salary",
+    "description": "Monthly salary",
+    "type": "income"
+  },
+  {
+    "id": "t17",
+    "date": "2025-03-04",
+    "amount": -1180,
+    "category": "Rent",
+    "description": "March rent",
+    "type": "expense"
+  },
+  {
+    "id": "t18",
+    "date": "2025-03-08",
+    "amount": -175,
+    "category": "Groceries",
+    "description": "Weekly groceries",
+    "type": "expense"
+  },
+  {
+    "id": "t19",
+    "date": "2025-03-17",
+    "amount": -60,
+    "category": "Utilities",
+    "description": "Internet",
+    "type": "expense"
+  },
+  {
+    "id": "t20",
+    "date": "2025-03-21",
+    "amount": -110,
+    "category": "Dining",
+    "description": "Dinner",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757739111279",
+    "date": "2025-09-13",
+    "amount": 469.35,
+    "category": "Salary",
+    "description": "Salary income",
+    "type": "income"
+  }
 ]
