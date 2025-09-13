@@ -166,5 +166,13 @@
     "category": "Salary",
     "description": "Salary income",
     "type": "income"
+  },
+  {
+    "id": "rtx_1757739141279",
+    "date": "2025-09-13",
+    "amount": -126.14,
+    "category": "Shopping",
+    "description": "Shopping expense",
+    "type": "expense"
   }
 ]
