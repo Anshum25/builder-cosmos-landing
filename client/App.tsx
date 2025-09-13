@@ -5,7 +5,13 @@ import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -19,11 +25,15 @@ const queryClient = new QueryClient();
 
 function Header() {
   const loc = useLocation();
-  const active = (path: string) => (loc.pathname === path ? "text-primary" : "text-foreground/70");
+  const active = (path: string) =>
+    loc.pathname === path ? "text-primary" : "text-foreground/70";
   const toggle = () => {
     const el = document.documentElement;
     el.classList.toggle("dark");
-    localStorage.setItem("finance.theme", el.classList.contains("dark") ? "dark" : "light");
+    localStorage.setItem(
+      "finance.theme",
+      el.classList.contains("dark") ? "dark" : "light",
+    );
   };
   useEffect(() => {
     const pref = localStorage.getItem("finance.theme");
@@ -32,7 +42,11 @@ function Header() {
   return (
     <header className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b">
       <div className="container flex items-center justify-between h-14">
-        <Link to="/" className="flex items-center gap-2 font-bold" aria-label="AI Finance Home">
+        <Link
+          to="/"
+          className="flex items-center gap-2 font-bold"
+          aria-label="AI Finance Home"
+        >
           <svg aria-hidden viewBox="0 0 24 24" className="h-6 w-6">
             <defs>
               <linearGradient id="g" x1="0" x2="1">
@@ -40,18 +54,30 @@ function Header() {
                 <stop offset="100%" stopColor="#F472B6" />
               </linearGradient>
             </defs>
-            <rect x="3" y="3" width="18" height="18" rx="4" fill="url(#g)"/>
+            <rect x="3" y="3" width="18" height="18" rx="4" fill="url(#g)" />
           </svg>
           <span>AI Finance</span>
         </Link>
         <nav className="hidden md:flex items-center gap-2">
-          <Link to="/" className={cn("px-3 py-2 text-sm font-medium", active("/"))}>
+          <Link
+            to="/"
+            className={cn("px-3 py-2 text-sm font-medium", active("/"))}
+          >
             Dashboard
           </Link>
-          <Link to="/chat" className={cn("px-3 py-2 text-sm font-medium", active("/chat"))}>
+          <Link
+            to="/chat"
+            className={cn("px-3 py-2 text-sm font-medium", active("/chat"))}
+          >
             Chat
           </Link>
-          <button onClick={toggle} className="px-3 py-2 text-sm text-foreground/60 hover:text-foreground" aria-label="Toggle theme">Theme</button>
+          <button
+            onClick={toggle}
+            className="px-3 py-2 text-sm text-foreground/60 hover:text-foreground"
+            aria-label="Toggle theme"
+          >
+            Theme
+          </button>
           <a
             href="https://builder.io"
             target="_blank"
@@ -72,20 +98,44 @@ function MobileNav() {
   const [open, setOpen] = (React as any).useState(false);
   return (
     <div className="md:hidden">
-      <button aria-label="Open menu" className="p-2" onClick={() => setOpen(true)}>
+      <button
+        aria-label="Open menu"
+        className="p-2"
+        onClick={() => setOpen(true)}
+      >
         <span className="i">☰</span>
       </button>
       {open && (
-        <div className="fixed inset-0 z-50 bg-black/40" onClick={() => setOpen(false)} aria-hidden />
+        <div
+          className="fixed inset-0 z-50 bg-black/40"
+          onClick={() => setOpen(false)}
+          aria-hidden
+        />
       )}
       {open && (
         <div className="fixed right-0 top-0 z-50 h-full w-64 bg-background border-l shadow-xl p-4">
-          <button className="mb-4" onClick={() => setOpen(false)} aria-label="Close menu">✕</button>
+          <button
+            className="mb-4"
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
           <nav className="flex flex-col">
-            <Link to="/" className="px-3 py-2" onClick={() => setOpen(false)} aria-current={loc.pathname === "/"}>
+            <Link
+              to="/"
+              className="px-3 py-2"
+              onClick={() => setOpen(false)}
+              aria-current={loc.pathname === "/"}
+            >
               Dashboard
             </Link>
-            <Link to="/chat" className="px-3 py-2" onClick={() => setOpen(false)} aria-current={loc.pathname === "/chat"}>
+            <Link
+              to="/chat"
+              className="px-3 py-2"
+              onClick={() => setOpen(false)}
+              aria-current={loc.pathname === "/chat"}
+            >
               Chat
             </Link>
           </nav>

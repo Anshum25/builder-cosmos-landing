@@ -342,5 +342,21 @@
     "category": "Bonus",
     "description": "Bonus income",
     "type": "income"
+  },
+  {
+    "id": "rtx_1757741761170",
+    "date": "2025-09-13",
+    "amount": -141.59,
+    "category": "Groceries",
+    "description": "Groceries expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741791169",
+    "date": "2025-09-13",
+    "amount": -90.17,
+    "category": "Groceries",
+    "description": "Groceries expense",
+    "type": "expense"
   }
 ]

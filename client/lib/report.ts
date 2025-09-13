@@ -2,7 +2,9 @@ import type { LoadDataApiResponse } from "@/lib/api";
 
 function svgToDataUrl(svg: SVGElement) {
   const s = new XMLSerializer().serializeToString(svg);
-  const encoded = encodeURIComponent(s).replace(/'/g, "%27").replace(/"/g, "%22");
+  const encoded = encodeURIComponent(s)
+    .replace(/'/g, "%27")
+    .replace(/"/g, "%22");
   return `data:image/svg+xml;charset=utf-8,${encoded}`;
 }
 
@@ -11,8 +13,12 @@ export function downloadFullReport(ctx: {
   insightsText: string;
 }) {
   const { api, insightsText } = ctx;
-  const expenseSvg = document.querySelector("#expense-chart svg") as SVGElement | null;
-  const forecastSvg = document.querySelector("#forecast-chart svg") as SVGElement | null;
+  const expenseSvg = document.querySelector(
+    "#expense-chart svg",
+  ) as SVGElement | null;
+  const forecastSvg = document.querySelector(
+    "#forecast-chart svg",
+  ) as SVGElement | null;
   const expenseImg = expenseSvg ? svgToDataUrl(expenseSvg) : null;
   const forecastImg = forecastSvg ? svgToDataUrl(forecastSvg) : null;
 

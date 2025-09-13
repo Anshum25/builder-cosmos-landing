@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 
 export function useTheme() {
   const [dark, setDark] = useState<boolean>(() =>
-    typeof document !== "undefined" ? document.documentElement.classList.contains("dark") : false,
+    typeof document !== "undefined"
+      ? document.documentElement.classList.contains("dark")
+      : false,
   );
 
   useEffect(() => {
-    const mq = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+    const mq =
+      window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
     const pref = localStorage.getItem("finance.theme");
     if (!pref && mq?.matches) {
       document.documentElement.classList.add("dark");

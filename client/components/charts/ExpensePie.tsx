@@ -1,7 +1,19 @@
-import { Pie, PieChart, Cell, ResponsiveContainer, Tooltip as RTooltip } from "recharts";
+import {
+  Pie,
+  PieChart,
+  Cell,
+  ResponsiveContainer,
+  Tooltip as RTooltip,
+} from "recharts";
 import { useTheme } from "@/hooks/useTheme";
 
-export default function ExpensePie({ data, id }: { data: { name: string; value: number }[]; id?: string }) {
+export default function ExpensePie({
+  data,
+  id,
+}: {
+  data: { name: string; value: number }[];
+  id?: string;
+}) {
   const { isDark } = useTheme();
   const COLORS = isDark
     ? ["#A78BFA", "#F472B6", "#22D3EE", "#F59E0B", "#60A5FA"]
