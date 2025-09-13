@@ -318,5 +318,13 @@
     "category": "Dining",
     "description": "Dining expense",
     "type": "expense"
+  },
+  {
+    "id": "rtx_1757741671171",
+    "date": "2025-09-13",
+    "amount": 473.88,
+    "category": "Refund",
+    "description": "Refund income",
+    "type": "income"
   }
 ]
