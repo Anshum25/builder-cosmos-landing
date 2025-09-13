@@ -32,18 +32,26 @@ function Header() {
   return (
     <header className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b">
       <div className="container flex items-center justify-between h-14">
-        <Link to="/" className="flex items-center gap-2 font-bold">
-          <span className="inline-block h-6 w-6 rounded-md bg-gradient-to-br from-indigo-500 to-fuchsia-500" />
+        <Link to="/" className="flex items-center gap-2 font-bold" aria-label="AI Finance Home">
+          <svg aria-hidden viewBox="0 0 24 24" className="h-6 w-6">
+            <defs>
+              <linearGradient id="g" x1="0" x2="1">
+                <stop offset="0%" stopColor="#6366F1" />
+                <stop offset="100%" stopColor="#F472B6" />
+              </linearGradient>
+            </defs>
+            <rect x="3" y="3" width="18" height="18" rx="4" fill="url(#g)"/>
+          </svg>
           <span>AI Finance</span>
         </Link>
-        <nav className="flex items-center gap-2">
+        <nav className="hidden md:flex items-center gap-2">
           <Link to="/" className={cn("px-3 py-2 text-sm font-medium", active("/"))}>
             Dashboard
           </Link>
           <Link to="/chat" className={cn("px-3 py-2 text-sm font-medium", active("/chat"))}>
             Chat
           </Link>
-          <button onClick={toggle} className="px-3 py-2 text-sm text-foreground/60 hover:text-foreground">Theme</button>
+          <button onClick={toggle} className="px-3 py-2 text-sm text-foreground/60 hover:text-foreground" aria-label="Toggle theme">Theme</button>
           <a
             href="https://builder.io"
             target="_blank"
@@ -53,6 +61,7 @@ function Header() {
             Help
           </a>
         </nav>
+        <MobileNav />
       </div>
     </header>
   );
