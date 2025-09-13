@@ -163,18 +163,10 @@ export default function Index() {
                 </CardHeader>
                 <CardContent className="h-64">
                   {tx.length ? (
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie data={pie} dataKey="value" nameKey="name" outerRadius={90}>
-                          {pie.map((entry, index) => (
-                            <Cell key={`c-${index}`} fill={COLORS[index % COLORS.length]} />
-                          ))}
-                        </Pie>
-                        <RTooltip />
-                      </PieChart>
-                    </ResponsiveContainer>
+                    <ExpensePie data={pie} id="expense-chart" />
                   ) : (
-                    <p className="text-sm text-muted-foreground">Enable Transactions to see breakdown.</p>) }
+                    <p className="text-sm text-muted-foreground">Enable Transactions to see breakdown.</p>
+                  )}
                 </CardContent>
               </Card>
 
