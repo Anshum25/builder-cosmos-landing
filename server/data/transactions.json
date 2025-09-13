@@ -182,5 +182,141 @@
     "category": "Dining",
     "description": "Dining expense",
     "type": "expense"
+  },
+  {
+    "id": "rtx_1757741161176",
+    "date": "2025-09-13",
+    "amount": 129.52,
+    "category": "Refund",
+    "description": "Refund income",
+    "type": "income"
+  },
+  {
+    "id": "rtx_1757741191177",
+    "date": "2025-09-13",
+    "amount": -142.16,
+    "category": "Shopping",
+    "description": "Shopping expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741221176",
+    "date": "2025-09-13",
+    "amount": -191.48,
+    "category": "Dining",
+    "description": "Dining expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741251176",
+    "date": "2025-09-13",
+    "amount": -24.2,
+    "category": "Groceries",
+    "description": "Groceries expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741281175",
+    "date": "2025-09-13",
+    "amount": 146.37,
+    "category": "Bonus",
+    "description": "Bonus income",
+    "type": "income"
+  },
+  {
+    "id": "rtx_1757741311176",
+    "date": "2025-09-13",
+    "amount": -176.42,
+    "category": "Utilities",
+    "description": "Utilities expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741341176",
+    "date": "2025-09-13",
+    "amount": -194.47,
+    "category": "Groceries",
+    "description": "Groceries expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741371175",
+    "date": "2025-09-13",
+    "amount": -216.39,
+    "category": "Utilities",
+    "description": "Utilities expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741401175",
+    "date": "2025-09-13",
+    "amount": 212.96,
+    "category": "Bonus",
+    "description": "Bonus income",
+    "type": "income"
+  },
+  {
+    "id": "rtx_1757741431174",
+    "date": "2025-09-13",
+    "amount": -144.63,
+    "category": "Dining",
+    "description": "Dining expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741461174",
+    "date": "2025-09-13",
+    "amount": 363.14,
+    "category": "Bonus",
+    "description": "Bonus income",
+    "type": "income"
+  },
+  {
+    "id": "rtx_1757741491172",
+    "date": "2025-09-13",
+    "amount": -58.92,
+    "category": "Dining",
+    "description": "Dining expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741521172",
+    "date": "2025-09-13",
+    "amount": 197.94,
+    "category": "Salary",
+    "description": "Salary income",
+    "type": "income"
+  },
+  {
+    "id": "rtx_1757741551171",
+    "date": "2025-09-13",
+    "amount": 58.98,
+    "category": "Salary",
+    "description": "Salary income",
+    "type": "income"
+  },
+  {
+    "id": "rtx_1757741581171",
+    "date": "2025-09-13",
+    "amount": -81.39,
+    "category": "Utilities",
+    "description": "Utilities expense",
+    "type": "expense"
+  },
+  {
+    "id": "rtx_1757741611171",
+    "date": "2025-09-13",
+    "amount": 404.03,
+    "category": "Refund",
+    "description": "Refund income",
+    "type": "income"
+  },
+  {
+    "id": "rtx_1757741641171",
+    "date": "2025-09-13",
+    "amount": -52.68,
+    "category": "Dining",
+    "description": "Dining expense",
+    "type": "expense"
   }
 ]
