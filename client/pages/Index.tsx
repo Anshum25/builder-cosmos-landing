@@ -148,7 +148,7 @@ export default function Index() {
 
               <InsightCard
                 title="Savings Forecast (3 months)"
-                desc={spending ? `Based on recent patterns, you could save around $${(spending.total > 0 ? 0 : 0).toFixed(0)}. Ask in Chat for details!` : "Grant Transactions to estimate savings forecast."}
+                desc={spending ? "Based on recent patterns, I can project your next 3 months of savings. Ask in Chat for a personalized estimate." : "Grant Transactions to estimate savings forecast."}
                 cats={[{ key: "transactions", allowed: !!data?.data.transactions }]}
               />
 
