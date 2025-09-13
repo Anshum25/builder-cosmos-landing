@@ -1,0 +1,8 @@
+{
+  "assets": false,
+  "liabilities": false,
+  "transactions": false,
+  "epf": false,
+  "creditScore": false,
+  "investments": false
+}
