@@ -19,6 +19,15 @@ const queryClient = new QueryClient();
 function Header() {
   const loc = useLocation();
   const active = (path: string) => (loc.pathname === path ? "text-primary" : "text-foreground/70");
+  const toggle = () => {
+    const el = document.documentElement;
+    el.classList.toggle("dark");
+    localStorage.setItem("finance.theme", el.classList.contains("dark") ? "dark" : "light");
+  };
+  useEffect(() => {
+    const pref = localStorage.getItem("finance.theme");
+    if (pref === "dark") document.documentElement.classList.add("dark");
+  }, []);
   return (
     <header className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b">
       <div className="container flex items-center justify-between h-14">
@@ -33,6 +42,7 @@ function Header() {
           <Link to="/chat" className={cn("px-3 py-2 text-sm font-medium", active("/chat"))}>
             Chat
           </Link>
+          <button onClick={toggle} className="px-3 py-2 text-sm text-foreground/60 hover:text-foreground">Theme</button>
           <a
             href="https://builder.io"
             target="_blank"

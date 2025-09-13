@@ -1,26 +1,65 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useChat } from "@/context/ChatContext";
+import { usePermissions } from "@/context/PermissionsContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { Loader2, Send, Lock, Unlock } from "lucide-react";
+import { Loader2, Send, Unlock, Mic } from "lucide-react";
 import type { ChatResponse } from "@shared/api";
 
 export default function Chat() {
   const { messages, send, sending } = useChat();
+  const { setPermission } = usePermissions();
   const [text, setText] = useState("");
   const [last, setLast] = useState<ChatResponse | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    containerRef.current?.scrollTo({ top: 999999, behavior: "smooth" });
+  }, [messages, sending]);
 
   const onSend = async () => {
     if (!text.trim()) return;
     const resp = await send(text.trim());
     setText("");
     if (resp) setLast(resp);
-    containerRef.current?.scrollTo({ top: 999999, behavior: "smooth" });
   };
+
+  const onGrant = async () => {
+    const cat = last?.missingPermissions?.[0];
+    if (!cat) return;
+    await setPermission(cat as any, true);
+  };
+
+  function speak(text: string) {
+    try {
+      const u = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    } catch {}
+  }
+
+  function startVoice() {
+    const R: any = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    if (!R) return;
+    const rec = new R();
+    rec.lang = "en-US";
+    rec.onresult = (e: any) => {
+      const str = e.results[0][0].transcript;
+      setText(str);
+    };
+    rec.start();
+  }
+
+  const samples = [
+    "How much did I spend last month?",
+    "Why did my expenses increase last quarter?",
+    "Can I afford to take a vacation next month?",
+    "What's my best option for repaying my loan faster?",
+    "What about last 3 months?",
+  ];
 
   return (
     <main className="min-h-[calc(100vh-56px)] bg-gradient-to-br from-indigo-50 via-white to-fuchsia-50">
@@ -36,14 +75,15 @@ export default function Chat() {
                   <div className="text-sm text-muted-foreground">
                     Try:
                     <ul className="list-disc ml-5 mt-2 space-y-1">
-                      <li>How much did I spend last month?</li>
-                      <li>Why did my expenses increase last quarter?</li>
-                      <li>Can I afford to take a vacation next month?</li>
-                      <li>What's my best option for repaying my loan faster?</li>
+                      {samples.map((s) => (
+                        <li key={s} className="cursor-pointer hover:text-foreground" onClick={() => setText(s)}>
+                          {s}
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 )}
-                {messages.map((m) => (
+                {messages.map((m, i) => (
                   <motion.div key={m.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
                     <div className={m.role === "user" ? "text-right" : "text-left"}>
                       <div
@@ -63,12 +103,23 @@ export default function Chat() {
                     <Loader2 className="h-4 w-4 animate-spin" /> Thinking...
                   </div>
                 )}
+                {last?.missingPermissions && last.missingPermissions.length > 0 && (
+                  <div className="mt-2 text-sm">
+                    <div className="mb-2">I need access to {last.missingPermissions.join(", ")} to answer that.</div>
+                    <Button size="sm" onClick={onGrant}>
+                      Grant Access
+                    </Button>
+                  </div>
+                )}
+                {last?.reply && (
+                  <div className="sr-only" aria-hidden>{speak(last.reply)}</div>
+                )}
               </CardContent>
             </Card>
 
-            {last && (
+            {last && last.insights && last.insights.length > 0 && (
               <div className="space-y-3">
-                {last.insights?.map((ins) => (
+                {last.insights.map((ins) => (
                   <motion.div key={ins.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
                     <Card>
                       <CardHeader className="flex flex-row items-center justify-between">
@@ -106,14 +157,19 @@ export default function Chat() {
                   <Button onClick={onSend} disabled={sending}>
                     {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                   </Button>
+                  <Button type="button" variant="secondary" onClick={startVoice} title="Voice input">
+                    <Mic className="h-4 w-4" />
+                  </Button>
                 </div>
                 <div className="text-xs text-muted-foreground">
                   Tip: Ask follow-ups like "What about last 3 months?" to keep context.
                 </div>
                 <div className="space-y-1">
-                  <Badge variant="secondary">Spending Pattern Analysis</Badge>
-                  <Badge variant="secondary">Savings Forecast</Badge>
-                  <Badge variant="secondary">Debt Repayment Strategy</Badge>
+                  {samples.map((s) => (
+                    <Badge key={s} variant="secondary" onClick={() => setText(s)} className="cursor-pointer">
+                      {s}
+                    </Badge>
+                  ))}
                 </div>
               </CardContent>
             </Card>

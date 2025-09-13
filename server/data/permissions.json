@@ -1,5 +1,5 @@
 {
-  "assets": false,
+  "assets": true,
   "liabilities": true,
   "transactions": true,
   "epf": true,

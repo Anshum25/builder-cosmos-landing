@@ -19,6 +19,8 @@ async function readJson<T>(file: string, fallback: T): Promise<T> {
   }
 }
 
+import type { ServerEvent } from "@shared/api";
+
 export function createServer() {
   const app = express();
 
@@ -27,6 +29,43 @@ export function createServer() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
+  // Simple in-memory SSE clients
+  const clients = new Set<express.Response>();
+  function send(event: ServerEvent) {
+    const line = `data: ${JSON.stringify(event)}\n\n`;
+    for (const res of clients) res.write(line);
+  }
+
+  // Background generator: new transaction every 30s
+  async function addRandomTransaction() {
+    try {
+      const raw = await readFile(dataPath("transactions.json"), "utf-8");
+      const list = JSON.parse(raw) as any[];
+      const id = `rtx_${Date.now()}`;
+      const now = new Date();
+      const isExpense = Math.random() > 0.5;
+      const categories = isExpense
+        ? ["Groceries", "Dining", "Transport", "Utilities", "Shopping"]
+        : ["Salary", "Bonus", "Refund"];
+      const cat = categories[Math.floor(Math.random() * categories.length)];
+      const amount = parseFloat((Math.random() * (isExpense ? -200 : 500) + (isExpense ? -20 : 50)).toFixed(2));
+      const tx = {
+        id,
+        date: now.toISOString().slice(0, 10),
+        amount,
+        category: cat,
+        description: isExpense ? `${cat} expense` : `${cat} income`,
+        type: isExpense ? "expense" : "income",
+      };
+      list.push(tx);
+      await writeFile(dataPath("transactions.json"), JSON.stringify(list, null, 2), "utf-8");
+      send({ type: "transaction", payload: { id } });
+    } catch (e) {
+      // ignore
+    }
+  }
+  setInterval(addRandomTransaction, 30_000);
+
   // Example API routes
   app.get("/api/ping", (_req, res) => {
     const ping = process.env.PING_MESSAGE ?? "ping";
@@ -34,6 +73,17 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+
+  // SSE endpoint
+  app.get("/api/stream", (req, res) => {
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
+    res.flushHeaders?.();
+    res.write("retry: 10000\n\n");
+    clients.add(res);
+    req.on("close", () => clients.delete(res));
+  });
 
   // Permissions API
   app.get("/api/permissions", async (_req, res) => {
@@ -69,6 +119,7 @@ export function createServer() {
     };
     await writeFile(dataPath("permissions.json"), JSON.stringify(updated, null, 2), "utf-8");
     res.json(updated);
+    send({ type: "permissions", payload: updated });
   });
 
   // Load data by permissions

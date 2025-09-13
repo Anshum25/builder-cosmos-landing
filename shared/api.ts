@@ -88,4 +88,9 @@ export interface ChatResponse {
     severity?: "info" | "warning" | "critical";
     usedCategories: DataCategory[];
   }>;
+  missingPermissions?: DataCategory[];
 }
+
+export type ServerEvent =
+  | { type: "transaction"; payload: { id: string } }
+  | { type: "permissions"; payload: Permissions };

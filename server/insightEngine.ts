@@ -135,6 +135,7 @@ export async function handleChat(
   const used = new Set<DataCategory>();
   const replyParts: string[] = [];
   const insights: ChatResponse["insights"] = [];
+  const missing = new Set<DataCategory>();
 
   const ask = message.toLowerCase();
   let topic: "spending" | "afford" | "debt" | "general" = "general";
@@ -146,7 +147,8 @@ export async function handleChat(
 
   if (topic === "spending") {
     if (!data.transactions) {
-      replyParts.push("I need access to Transactions to analyze your spending.");
+      missing.add("transactions");
+      replyParts.push("I need access to Transactions to analyze your spending. Would you like to grant it?");
     } else {
       used.add("transactions");
       const months = time.months ?? 1;
@@ -169,7 +171,8 @@ export async function handleChat(
     }
   } else if (topic === "afford") {
     if (!data.transactions) {
-      replyParts.push("I need access to Transactions to estimate affordability.");
+      missing.add("transactions");
+      replyParts.push("I need access to Transactions to estimate affordability. Would you like to grant it?");
     } else {
       used.add("transactions");
       const f = savingsForecast(data.transactions);
@@ -186,7 +189,8 @@ export async function handleChat(
     }
   } else if (topic === "debt") {
     if (!data.liabilities) {
-      replyParts.push("I need access to Liabilities to suggest a repayment strategy.");
+      missing.add("liabilities");
+      replyParts.push("I need access to Liabilities to suggest a repayment strategy. Would you like to grant it?");
     } else {
       used.add("liabilities");
       const strat = chooseDebtStrategy(data.liabilities);
@@ -220,7 +224,7 @@ export async function handleChat(
   session.lastTopic = topic;
   sessions.set(sessionId, session);
 
-  return { reply, usedCategories: Array.from(used), insights };
+  return { reply, usedCategories: Array.from(used), insights, missingPermissions: Array.from(missing) };
 }
 
 export async function computeDashboard(data: LoadDataResponse) {
@@ -230,9 +234,11 @@ export async function computeDashboard(data: LoadDataResponse) {
   const tx = data.transactions ?? [];
   const spend = spendingSummary(tx, 1);
   const unusual = tx.length ? detectUnusualSpending(tx) : null;
+  const forecast = tx.length ? savingsForecast(tx) : null;
   return {
     netWorth,
     spending: spend,
     unusual,
+    forecast,
   };
 }
